@@ -5,7 +5,7 @@ Cette application sera utilisée plus particulièrement par l’usine A de la RN
 
  Backend Spring boot
  Front end Angular 10 avec intégration template
- SQL en   SGBD
+ et SQL en   SGBD
 
 
  
