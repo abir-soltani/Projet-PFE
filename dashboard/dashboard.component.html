@@ -1,0 +1,153 @@
+
+<div class="row">
+  
+  
+</div>
+
+<!-- Quick Action Toolbar Starts-->
+<div class="row quick-action-toolbar">
+  <div class="col-md-12 grid-margin">
+    <div class="card">
+      <div class="card-header d-block d-md-flex">
+        <h5 class="mb-0"> Actions</h5>
+        
+      </div>
+      <div class="d-md-flex row m-0 quick-action-btns" role="group" aria-label="Quick action buttons">
+        <div class="col-sm-6 col-md-3 p-3 text-center btn-wrapper">
+          <button type="button" class="btn px-0"> <i class="icon-user mr-2"></i> 
+            <a [routerLink]="['/add-utilisateur']">Ajouter Utilisateur</a></button>
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Quick Action Toolbar Ends-->
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-sm-flex align-items-center mb-4">
+          <h4 class="card-title mb-sm-0">Liste des utilisateurs</h4>
+          <a href="#" class="text-dark ml-auto mb-3 mb-sm-0"> Afficher tous la liste</a>
+        </div>
+        <div class="table-responsive border rounded p-1">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="font-weight-bold"> ID</th>
+                <th class="font-weight-bold">Email</th>
+                <th class="font-weight-bold">Mot de passe</th>
+                <th class="font-weight-bold">Nom</th>
+                <th class="font-weight-bold">Prénom</th>
+                <th class="font-weight-bold">Role</th>
+                <th class="font-weight-bold">Actions</th>
+              </tr>
+            </thead>
+            
+              <tbody *ngFor="let utilisateur of utilisateurs">
+                <tr>
+                  <td>{{utilisateur.id }}</td>
+                  <td>{{utilisateur.username }}</td>
+                  <td>{{utilisateur.password }}</td>
+                  <td>{{utilisateur.nom }}</td>
+                  <td>{{utilisateur.prenom }}</td>
+                  <td>{{utilisateur.role }}</td>
+                    <td><a class="badge badge-success p-2" [routerLink]="['/updateUtilisateur',utilisateur.id]">Modifier</a></td>
+                    
+                    <td><a class="badge badge-danger p-2" (click)="suprimerUtilisateur(utilisateur)">supprimer</a></td>
+                </tr>
+            </tbody>
+              
+            
+             
+            
+          </table>
+        </div>
+        <div class="d-flex mt-4 flex-wrap align-items-center">
+          
+          <nav class="ml-auto">
+            <ul class="pagination separated pagination-info mb-sm-0">
+              <li class="page-item"><a href="#" class="page-link"><i class="icon-arrow-left"></i></a></li>
+              <li class="page-item active"><a href="#" class="page-link">1</a></li>
+              <li class="page-item"><a href="#" class="page-link">2</a></li>
+              <li class="page-item"><a href="#" class="page-link">3</a></li>
+              <li class="page-item"><a href="#" class="page-link">4</a></li>
+              <li class="page-item"><a href="#" class="page-link"><i class="icon-arrow-right"></i></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-8 grid-margin stretch-card">
+    <div class="card sales-report-country">
+      <div class="card-body">
+        <div class="d-md-flex">
+          <h4 class="card-title">Sales Performance by Country</h4>
+          <div class="mb-2 m-md-0 ml-md-auto">
+            <a href="#" class="text-secondary mr-3"><i class="icon-cloud-upload mr-3"></i> Export File</a>
+            <a href="#" class="text-secondary mr-3"><i class="icon-printer mr-3"></i>Print File</a>
+          </div>
+        </div>
+      
+        
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-4 grid-margin stretch-card">
+    
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <div class="row income-expense-summary-chart-text">
+        
+          
+          
+          <div class="col-md-6 col-xl-4 d-flex align-items-center">
+            <div class="input-group ml-auto" id="income-expense-summary-chart-daterange">
+              <div class="inpu-group-prepend input-group-text"><i class="icon-calendar"></i></div>
+              <input class="form-control" ngbDatepicker #d="ngbDatepicker" [displayMonths]="2"  [dayTemplate]="t" [autoClose]="false" [value]="(toNativeDate(fromDate) | date :'longDate') + ' - ' + (toNativeDate(toDate) | date :'longDate')" [placement]="'bottom-right'">
+              <div class="input-group-prepend input-group-text" (click)="d.toggle()"><i class="icon-arrow-down"></i></div>
+            </div>
+            <ng-template #t let-date let-focused="focused">
+              <span class="custom-day"
+                    (click)="onDateSelection(date)"
+                    [class.focused]="focused"
+                    [class.range]="isRange(date)"
+                    [class.faded]="isHovered(date) || isInside(date)"
+                    (mouseenter)="hoveredDate = date"
+                    (mouseleave)="hoveredDate = null">
+                {{ date.day }}
+              </span>
+            </ng-template>
+          </div>
+        </div>
+        <div class="row income-expense-summary-chart mt-3">
+          <div class="col-md-12">
+            <x-chartist [type]="'Line'" [data]="incomeExpenseSummaryChartData" [options]="incomeExpenseSummaryChartOptions" [responsiveOptions]="incomeExpenseSummaryChartResponsiveOptions" class="ct-chart mt-5"></x-chartist>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+    
+    <div class="col-md-6 col-xl-4 grid-margin stretch-card">
+      <div class="card dashboard-inline-datepicker datepicker-custom">
+        <div class="card-body">
+          <ngb-datepicker [navigation]="'arrows'"></ngb-datepicker>
+        </div>
+      </div>
+    </div>
+   
+  </div>
