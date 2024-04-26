@@ -1,0 +1,130 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    
+    
+    <li class="nav-item nav-category"><span class="nav-link" translate>RNTA</span></li>
+    <li class="nav-item" [ngClass]="{'active' : dashboard.isActive  }">
+      <a class="nav-link" (click)="uiBasicCollapsed = !uiBasicCollapsed" [attr.aria-expanded]="uiBasicCollapsed" aria-controls="ui-basic">
+        <span class="menu-title" translate>Acceuil</span>
+        
+      </a>
+      <div class="collapse" id="ui-basic" [ngbCollapse]="!uiBasicCollapsed">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item" [ngClass]="{ 'active': dashboard.isActive }"> 
+            <a class="nav-link" routerLink="/dashboard" routerLinkActive #dashboard="routerLinkActive" [routerLinkActiveOptions]="{exact:
+            true}">Tableau de bord</a></li>
+            <li *ngIf="role=='ROLE_DRECTEURPROD'" class="nav-item" [ngClass]="{ 'active': utilisateurs.isActive }"> 
+              <a class="nav-link" routerLink="/utilisateurs" routerLinkActive #utilisateurs="routerLinkActive" [routerLinkActiveOptions]="{exact:
+              true}">Utilisateurs</a>
+            </li>
+          
+        </ul>
+      </div>
+    </li>
+ 
+    <li class="nav-item nav-category"><span class="nav-link" translate>Données techniques</span></li>
+    
+    <li *ngIf="role=='ROLE_DRECTEURPROD'" class="nav-item" [ngClass]="{ 'active': ateliers.isActive }">
+      <a class="nav-link" routerLink="/ateliers" routerLinkActive #ateliers="routerLinkActive" [routerLinkActiveOptions]="{exact:
+        true}">
+        <span class="menu-title" translate>Ateliers</span>
+        
+      </a>
+    </li>
+    <li *ngIf="role=='ROLE_DRECTEURPROD'" class="nav-item" [ngClass]="{ 'active': machines.isActive }">
+      <a class="nav-link" routerLink="/machines" routerLinkActive #machines="routerLinkActive" [routerLinkActiveOptions]="{exact:
+        true}">
+        <span class="menu-title" translate>Machines</span>
+        
+      </a>
+    </li>
+    
+
+    
+    <li *ngIf="role=='ROLE_CHEFATELIER' || role=='ROLE_DRECTEURPROD'" class="nav-item" [ngClass]="{ 'active': presences.isActive }">
+      <a class="nav-link" routerLink="/presences" routerLinkActive #presences="routerLinkActive" [routerLinkActiveOptions]="{exact:
+        true}">
+        <span class="menu-title" translate>Présences effectives</span>
+      
+      </a>
+    </li>
+ 
+   
+    <li class="nav-item nav-category"><span class="nav-link" translate> Données journalières  </span></li>
+    <li *ngIf="role=='ROLE_DRECTEURPROD'" class="nav-item" [ngClass]="{'active' : dashboard.isActive  }">
+      <a class="nav-link" (click)="uiBasicCollapsed = !uiBasicCollapsed" [attr.aria-expanded]="uiBasicCollapsed" aria-controls="ui-basic">
+        <span class="menu-title" translate>Production</span>
+        
+      </a>
+      <div class="collapse" id="ui-basic" [ngbCollapse]="!uiBasicCollapsed">
+        <ul class="nav flex-column sub-menu">
+          <li *ngIf="role=='ROLE_DRECTEURPROD'" class="nav-item" [ngClass]="{ 'active': readfiletext.isActive }"> 
+            <a class="nav-link" routerLink="/readfiletext" routerLinkActive #readfiletext="routerLinkActive" [routerLinkActiveOptions]="{exact:
+            true}">Confection</a></li>
+            <li *ngIf="role=='ROLE_DRECTEURPROD'" class="nav-item" [ngClass]="{ 'active': excel.isActive }"> 
+              <a class="nav-link" routerLink="/excel" routerLinkActive #excel="routerLinkActive" [routerLinkActiveOptions]="{exact:
+              true}">Paquetage</a>
+            </li>
+          
+        </ul>
+      </div>
+    </li>
+    <li *ngIf="role=='ROLE_CHEFATELIER' || role=='ROLE_DRECTEURPROD'" class="nav-item" [ngClass]="{ 'active': stocks.isActive }">
+      <a class="nav-link" routerLink="/stocks" routerLinkActive #stocks="routerLinkActive" [routerLinkActiveOptions]="{exact:
+        true}">
+        <span class="menu-title" translate>Stock</span>
+        
+      </a>
+    </li>
+    <li  class="nav-item" [ngClass]="{'active' : dashboard.isActive  }">
+      <a class="nav-link" (click)="uiBasicCollapsed = !uiBasicCollapsed" [attr.aria-expanded]="uiBasicCollapsed" aria-controls="ui-basic">
+        <span class="menu-title" translate>Réclamation</span>
+        
+      </a>
+      <div class="collapse" id="ui-basic" [ngbCollapse]="!uiBasicCollapsed">
+        <ul class="nav flex-column sub-menu">
+          <li *ngIf="role=='ROLE_CHEFATELIER' || role=='ROLE_DRECTEURPROD'" class="nav-item" [ngClass]="{ 'active': reclamations.isActive }"> 
+            <a class="nav-link" routerLink="/reclamations" routerLinkActive #reclamations="routerLinkActive" [routerLinkActiveOptions]="{exact:
+            true}">Demande d'intervention</a></li>
+            <li *ngIf="role=='ROLE_TECK' || role=='ROLE_DRECTEURPROD'" class="nav-item" [ngClass]="{ 'active': interventions.isActive }"> 
+              <a class="nav-link" routerLink="/interventions" routerLinkActive #interventions="routerLinkActive" [routerLinkActiveOptions]="{exact:
+              true}">Rapport d'intervention</a>
+            </li>
+          
+        </ul>
+      </div>
+    </li>
+  
+    <li *ngIf="role=='ROLE_CHEFATELIER'" class="nav-item" [ngClass]="{ 'active': gammes.isActive }">
+      <a class="nav-link" routerLink="/gammes" routerLinkActive #gammes="routerLinkActive" [routerLinkActiveOptions]="{exact:
+        true}">
+        <span class="menu-title" translate>Gamme opératoire</span>
+        
+      </a>
+    </li>
+    <li *ngIf="role=='ROLE_DRECTEURPROD'" class="nav-item" [ngClass]="{ 'active': articles.isActive }">
+      <a class="nav-link" routerLink="/articles" routerLinkActive #articles="routerLinkActive" [routerLinkActiveOptions]="{exact:
+        true}">
+        <span class="menu-title" translate>Articles</span>
+        
+      </a>
+    </li>
+
+    
+    <li *ngIf="role=='ROLE_DRECTEURPROD'" class="nav-item" [ngClass]="{ 'active' : chartjs.isActive }">
+      <a class="nav-link" (click)="chartsCollapsed = !chartsCollapsed" [attr.aria-expanded]="chartsCollapsed" aria-controls="charts">
+        <span class="menu-title" translate>Statistiques</span>
+        <i class="icon-chart menu-icon"></i>
+      </a>
+      <div class="collapse" id="charts" [ngbCollapse]="!chartsCollapsed">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" routerLink="charts/chartjs" routerLinkActive="active" #chartjs="routerLinkActive">Statistique du prodution</a></li>
+        </ul>
+      </div>
+    </li>
+    
+    
+    
+   
+  </ul>
+</nav>
